@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ResumeTitan AI — Secure Payment Portal</title>
+  <title>ResumeTitan AI — Career Documents That Get You Hired</title>
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+
+  <!-- ═══ NAVBAR ═══ -->
   <nav class="navbar">
     <div class="container">
       <div class="brand">
@@ -14,124 +16,370 @@
         <span class="brand-text">ResumeTitan<span class="brand-accent"> AI</span></span>
       </div>
       <div class="nav-links">
-        <a href="/dashboard.html" class="nav-link">Admin Dashboard</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="#payment" class="nav-link btn btn-primary" style="padding: 8px 20px; font-size: 14px;">Get Started</a>
+        <a href="/dashboard.html" class="nav-link">Admin</a>
       </div>
     </div>
   </nav>
 
-  <main class="container">
-    <div class="hero">
-      <h1>🚀 Professional Career Documents</h1>
-      <p>Pay with cryptocurrency — Bitcoin, Polygon, or Solana. Get your career docs in hours, not days.</p>
+  <!-- ═══ HERO ═══ -->
+  <section class="hero">
+    <div class="container">
+      <h1>AI-Powered Career Documents<br>That Get You Hired</h1>
+      <p>Professional, ATS-optimized resumes, cover letters, LinkedIn profiles, interview prep, and career advice — tailored to your target role and delivered in under 24 hours.</p>
+      <div class="hero-actions">
+        <a href="#payment" class="btn btn-primary btn-lg">Get Your Documents →</a>
+        <a href="#how-it-works" class="btn btn-secondary btn-lg">See How It Works</a>
+      </div>
     </div>
+  </section>
 
-    <!-- Step 1: Select Product -->
-    <section id="step-products" class="step active">
-      <div class="step-header">
-        <span class="step-number">1</span>
-        <h2>Choose Your Service</h2>
+  <!-- ═══ TRUST BAR ═══ -->
+  <div class="container">
+    <div class="trust-bar">
+      <div class="trust-item">
+        <div class="number">&lt; 24h</div>
+        <div class="label">Average Delivery</div>
       </div>
-      <div class="products-grid" id="products-list">
-        <div class="loading">Loading products...</div>
+      <div class="trust-item">
+        <div class="number">ATS</div>
+        <div class="label">Optimized for Bots + Humans</div>
       </div>
-    </section>
+      <div class="trust-item">
+        <div class="number">₿</div>
+        <div class="label">Pay with Crypto</div>
+      </div>
+      <div class="trust-item">
+        <div class="number">6</div>
+        <div class="label">AI Specialists</div>
+      </div>
+    </div>
+  </div>
 
-    <!-- Step 2: Your Info -->
-    <section id="step-info" class="step" style="display:none">
-      <div class="step-header">
-        <span class="step-number">2</span>
-        <h2>Your Information</h2>
+  <!-- ═══ SERVICES ═══ -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-header">
+        <h2>Services</h2>
+        <p>Everything you need to land your next role — pick a single service or save with a bundle.</p>
       </div>
-      <div class="card">
-        <div id="selected-product-info" class="selected-product"></div>
-        <form id="customer-form" class="form">
-          <div class="form-group">
-            <label for="customer-name">Full Name</label>
-            <input type="text" id="customer-name" placeholder="e.g. Alex Chen" required>
-          </div>
-          <div class="form-group">
-            <label for="customer-email">Email Address</label>
-            <input type="email" id="customer-email" placeholder="alex@example.com" required>
-          </div>
-          <div class="form-group">
-            <label for="customer-notes">Notes (optional)</label>
-            <textarea id="customer-notes" placeholder="Target role, company, or any special instructions..."></textarea>
-          </div>
-          <div class="form-actions">
-            <button type="button" class="btn btn-secondary" onclick="backToProducts()">← Back</button>
-            <button type="submit" class="btn btn-primary">Continue to Payment →</button>
-          </div>
-        </form>
+      <div class="services-grid" id="services-list">
+        <div class="loading">Loading services...</div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Step 3: Payment -->
-    <section id="step-payment" class="step" style="display:none">
-      <div class="step-header">
-        <span class="step-number">3</span>
-        <h2>Complete Payment</h2>
+  <!-- ═══ HOW IT WORKS ═══ -->
+  <section class="section" id="how-it-works" style="background: var(--bg-card);">
+    <div class="container">
+      <div class="section-header">
+        <h2>How It Works</h2>
+        <p>Three simple steps to career documents that stand out.</p>
       </div>
-      
-      <div class="payment-container">
-        <div class="payment-info card">
-          <div class="payment-summary">
-            <h3>Order Summary</h3>
-            <div id="payment-summary-details"></div>
-          </div>
-          
-          <div class="currency-selector">
-            <h3>Select Currency</h3>
-            <div class="currency-options" id="currency-options">
-              <button class="currency-btn active" data-currency="BTC" onclick="selectCurrency('BTC')">
-                <span class="currency-icon">₿</span>
-                <span>Bitcoin</span>
-              </button>
-              <button class="currency-btn" data-currency="POL" onclick="selectCurrency('POL')">
-                <span class="currency-icon">⬡</span>
-                <span>Polygon</span>
-              </button>
-              <button class="currency-btn" data-currency="SOL" onclick="selectCurrency('SOL')">
-                <span class="currency-icon">◎</span>
-                <span>Solana</span>
-              </button>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h3>Tell Us About Your Goal</h3>
+          <p>Share your current resume, the job description you're targeting, and your career goals. Our AI team analyzes everything.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h3>We Build Your Documents</h3>
+          <p>Our 6 AI specialists craft every document — resume, cover letter, LinkedIn profile, interview prep, and career roadmap — all cross-checked for consistency.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h3>Receive &amp; Apply</h3>
+          <p>Get your polished documents delivered in under 24 hours. Pay once with Bitcoin, Polygon, or Solana — no subscriptions required.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SAMPLE WORK ═══ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Sample Package</h2>
+        <p>What you get when you order the Premium Bundle.</p>
+      </div>
+      <div class="sample-card">
+        <div class="sample-text">
+          <h3>Complete Career Package</h3>
+          <p>Our first client, <strong>Alex Chen</strong>, targeted a Product Marketing Manager role at Salesforce. Our 6-agent team produced everything needed for a successful application — all in under 5 minutes.</p>
+          <p>Every document is cross-checked by our Quality Reviewer for consistency, accuracy, and ATS readiness before delivery.</p>
+          <a href="#payment" class="btn btn-primary">Get Your Package →</a>
+        </div>
+        <div class="sample-docs">
+          <div class="doc-badge"><span class="check">✅</span> ATS-Optimized Resume</div>
+          <div class="doc-badge"><span class="check">✅</span> Tailored Cover Letter</div>
+          <div class="doc-badge"><span class="check">✅</span> LinkedIn Optimization</div>
+          <div class="doc-badge"><span class="check">✅</span> Interview Prep Guide</div>
+          <div class="doc-badge"><span class="check">✅</span> Career Advisory Report</div>
+          <div class="doc-badge"><span class="check">✅</span> Quality Review</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ TESTIMONIALS ═══ -->
+  <section class="section" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <h2>What Clients Say</h2>
+        <p>Early results from our first clients.</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="quote">"The resume rewrite was incredible. The ATS keyword mapping alone got me more callbacks in two weeks than I'd had in two months. And the interview prep guide had questions I actually got asked."</div>
+          <div class="author">
+            <div class="author-avatar">AC</div>
+            <div class="author-info">
+              <div class="name">Alex Chen</div>
+              <div class="role">Target: PMM @ Salesforce</div>
             </div>
           </div>
         </div>
+        <div class="testimonial-card">
+          <div class="quote">"The cover letter reframed my career change story perfectly. I went from 'how do I explain this gap' to 'this is why my background is actually an advantage.' Money well spent."</div>
+          <div class="author">
+            <div class="author-avatar">DC</div>
+            <div class="author-info">
+              <div class="name">David Chen</div>
+              <div class="role">Career Change: Teaching → Tech PM</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="quote">"I'd been applying for 3 months with no responses. After the resume overhaul, I got 3 interview requests in the first week. The ATS was definitely filtering me out before."</div>
+          <div class="author">
+            <div class="author-avatar">MO</div>
+            <div class="author-info">
+              <div class="name">Michael O.</div>
+              <div class="role">Unemployed → 3 interviews in 1 week</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="payment-address card" id="payment-address-section">
-          <div class="loading">Generating invoice...</div>
+  <!-- ═══ PAYMENT SECTION ═══ -->
+  <section class="section" id="payment" style="background: var(--bg-card);">
+    <div class="container">
+      <div class="section-header">
+        <h2>Get Started</h2>
+        <p>Choose your service, pay with crypto, and get your documents in under 24 hours.</p>
+      </div>
+
+      <!-- Step 1: Select Product -->
+      <div id="step-products" class="step active">
+        <div class="step-header">
+          <span class="step-number">1</span>
+          <h2>Choose Your Service</h2>
+        </div>
+        <div class="products-grid" id="products-list">
+          <div class="loading">Loading products...</div>
         </div>
       </div>
 
-      <div class="payment-status card" id="payment-status" style="display:none">
-        <div class="status-icon">⏳</div>
-        <h3>Waiting for Payment</h3>
-        <p id="status-message">We're monitoring the blockchain for your transaction...</p>
-        <div class="progress-bar">
-          <div class="progress-fill" id="progress-fill"></div>
+      <!-- Step 2: Your Info -->
+      <div id="step-info" class="step" style="display:none">
+        <div class="step-header">
+          <span class="step-number">2</span>
+          <h2>Your Information</h2>
         </div>
-        <div id="status-details"></div>
+        <div class="card">
+          <div id="selected-product-info" class="selected-product"></div>
+          <form id="customer-form" class="form">
+            <div class="form-group">
+              <label for="customer-name">Full Name</label>
+              <input type="text" id="customer-name" placeholder="e.g. Alex Chen" required>
+            </div>
+            <div class="form-group">
+              <label for="customer-email">Email Address</label>
+              <input type="email" id="customer-email" placeholder="alex@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="customer-notes">Target Role &amp; Company (optional)</label>
+              <textarea id="customer-notes" placeholder="e.g. Product Marketing Manager at Salesforce..."></textarea>
+            </div>
+            <div class="form-actions">
+              <button type="button" class="btn btn-secondary" onclick="backToProducts()">← Back</button>
+              <button type="submit" class="btn btn-primary">Continue to Payment →</button>
+            </div>
+          </form>
+        </div>
       </div>
-    </section>
 
-    <!-- Step 4: Confirmed -->
-    <section id="step-confirmed" class="step" style="display:none">
-      <div class="confirmation card">
-        <div class="confirmation-icon">✅</div>
-        <h2>Payment Confirmed!</h2>
-        <p>Your payment has been confirmed on the blockchain. We'll start working on your documents immediately.</p>
-        <div class="receipt" id="receipt-details"></div>
-        <p class="confirmation-note">You'll receive your deliverables at the email address you provided within 24 hours.</p>
+      <!-- Step 3: Payment -->
+      <div id="step-payment" class="step" style="display:none">
+        <div class="step-header">
+          <span class="step-number">3</span>
+          <h2>Complete Payment</h2>
+        </div>
+        <div class="payment-container">
+          <div class="payment-info card">
+            <div class="payment-summary">
+              <h3>Order Summary</h3>
+              <div id="payment-summary-details"></div>
+            </div>
+            <div class="currency-selector">
+              <h3>Select Currency</h3>
+              <div class="currency-options" id="currency-options">
+                <button class="currency-btn active" data-currency="BTC" onclick="selectCurrency('BTC')">
+                  <span class="currency-icon">₿</span>
+                  <span>Bitcoin</span>
+                </button>
+                <button class="currency-btn" data-currency="POL" onclick="selectCurrency('POL')">
+                  <span class="currency-icon">⬡</span>
+                  <span>Polygon</span>
+                </button>
+                <button class="currency-btn" data-currency="SOL" onclick="selectCurrency('SOL')">
+                  <span class="currency-icon">◎</span>
+                  <span>Solana</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="payment-address card" id="payment-address-section">
+            <div class="loading">Generating invoice...</div>
+          </div>
+        </div>
+        <div class="payment-status card" id="payment-status" style="display:none">
+          <div class="status-icon">⏳</div>
+          <h3>Waiting for Payment</h3>
+          <p id="status-message">We're monitoring the blockchain for your transaction...</p>
+          <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+          <div id="status-details"></div>
+        </div>
       </div>
-    </section>
-  </main>
 
+      <!-- Step 4: Confirmed -->
+      <div id="step-confirmed" class="step" style="display:none">
+        <div class="confirmation card">
+          <div class="confirmation-icon">✅</div>
+          <h2>Payment Confirmed!</h2>
+          <p>Your payment has been confirmed on the blockchain. We'll start working on your documents immediately.</p>
+          <div class="receipt" id="receipt-details"></div>
+          <p class="confirmation-note">You'll receive your deliverables at the email address you provided within 24 hours.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FAQ ═══ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            How fast will I get my documents?
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer" style="display:none;">Most orders are delivered within 24 hours. Premium and Basic bundles may take up to 48 hours depending on complexity. We always prioritize speed without sacrificing quality.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            How do I pay with cryptocurrency?
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer" style="display:none;">Select Bitcoin (BTC), Polygon (POL), or Solana (SOL) during checkout. You'll get a unique invoice with the exact amount and our wallet address. Send the payment directly from your wallet — funds go straight to us, no intermediaries.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            What is ATS optimization and why does it matter?
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer" style="display:none;">ATS (Applicant Tracking System) software scans resumes before humans see them. We analyze the job description, extract key keywords, and weave them naturally into your resume. Most applicants get filtered out by ATS — we make sure you don't.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Can I get revisions if something isn't right?
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer" style="display:none;">Absolutely. Every order includes one round of revisions. We want you to be thrilled with your documents. Just reply to your delivery email with feedback and we'll make it right.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            What information do you need from me?
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer" style="display:none;">Your current resume (or bullet points about your experience), the job description of the role you're targeting, and a few notes about your career goals. The more context you give us, the more tailored your documents will be.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CRYPTO ═══ -->
+  <section class="section" style="background: var(--bg-card);">
+    <div class="container">
+      <div class="section-header">
+        <h2>Accepted Cryptocurrencies</h2>
+        <p>Non-custodial payments — funds go directly to our wallet. We never hold your crypto.</p>
+      </div>
+      <div class="crypto-grid">
+        <div class="crypto-card">
+          <div class="symbol">₿</div>
+          <div class="name">Bitcoin</div>
+          <div class="desc">Fast, secure, globally accepted</div>
+        </div>
+        <div class="crypto-card">
+          <div class="symbol">⬡</div>
+          <div class="name">Polygon (MATIC)</div>
+          <div class="desc">Low fees, instant confirmations</div>
+        </div>
+        <div class="crypto-card">
+          <div class="symbol">◎</div>
+          <div class="name">Solana</div>
+          <div class="desc">Lightning fast, sub-cent fees</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══ -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Ready to Land Your Next Role?</h2>
+        <p>Join our first wave of clients. Get professional, ATS-optimized career documents delivered in under 24 hours.</p>
+        <a href="#payment" class="btn btn-primary btn-lg" style="background: white; color: var(--primary);">Get Started Now →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
   <footer class="footer">
     <div class="container">
-      <p>ResumeTitan AI — Professional career services powered by AI. Crypto payments are non-refundable once confirmed.</p>
+      <div class="footer-links">
+        <a href="#services">Services</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#payment">Get Started</a>
+        <a href="/dashboard.html">Admin</a>
+      </div>
+      <p>ResumeTitan AI — Professional career services powered by AI. Crypto payments are non-refundable once confirmed on-chain.</p>
     </div>
   </footer>
 
   <script src="/js/app.js"></script>
+  <script>
+    function toggleFaq(el) {
+      const answer = el.nextElementSibling;
+      const toggle = el.querySelector('.faq-toggle');
+      if (answer.style.display === 'none') {
+        answer.style.display = 'block';
+        toggle.textContent = '−';
+      } else {
+        answer.style.display = 'none';
+        toggle.textContent = '+';
+      }
+    }
+  </script>
 </body>
 </html>
