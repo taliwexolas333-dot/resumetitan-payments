@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ResumeTitan AI — Admin Dashboard</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <div class="brand">
+        <span class="brand-icon">⚡</span>
+        <span class="brand-text">ResumeTitan<span class="brand-accent"> AI</span></span>
+        <span class="brand-badge">ADMIN</span>
+      </div>
+      <div class="nav-links">
+        <a href="/" class="nav-link">Customer Portal</a>
+        <button onclick="refreshAll()" class="btn btn-sm btn-secondary">🔄 Refresh</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <h1>📊 Revenue Dashboard</h1>
+    <p class="subtitle">Real-time payment tracking for ResumeTitan AI</p>
+
+    <!-- Stats Cards -->
+    <div class="stats-grid" id="stats-cards">
+      <div class="stat-card">
+        <div class="stat-label">Total Revenue (USD)</div>
+        <div class="stat-value" id="stat-revenue">$0.00</div>
+      </div>
+      <div class="stat-card stat-btc">
+        <div class="stat-label">Bitcoin (BTC)</div>
+        <div class="stat-value" id="stat-btc">0</div>
+      </div>
+      <div class="stat-card stat-pol">
+        <div class="stat-label">Polygon (POL)</div>
+        <div class="stat-value" id="stat-pol">0</div>
+      </div>
+      <div class="stat-card stat-sol">
+        <div class="stat-label">Solana (SOL)</div>
+        <div class="stat-value" id="stat-sol">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Confirmed Payments</div>
+        <div class="stat-value" id="stat-confirmed">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Pending Invoices</div>
+        <div class="stat-value" id="stat-pending">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Total Customers</div>
+        <div class="stat-value" id="stat-customers">0</div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('invoices')">Invoices</button>
+      <button class="tab" onclick="switchTab('transactions')">Transactions</button>
+      <button class="tab" onclick="switchTab('audit')">Audit Log</button>
+    </div>
+
+    <!-- Invoices -->
+    <div id="tab-invoices" class="tab-content active">
+      <div class="table-header">
+        <h3>Invoices</h3>
+        <div class="table-actions">
+          <select id="status-filter" onchange="loadInvoices()" class="form-select">
+            <option value="">All Statuses</option>
+            <option value="pending">Pending</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="expired">Expired</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+          <a href="/api/admin/export" class="btn btn-secondary btn-sm">📥 Export CSV</a>
+        </div>
+      </div>
+      <div class="table-wrapper">
+        <table id="invoices-table">
+          <thead>
+            <tr>
+              <th>Invoice ID</th>
+              <th>Customer</th>
+              <th>Product</th>
+              <th>Currency</th>
+              <th>Amount</th>
+              <th>USD Value</th>
+              <th>Status</th>
+              <th>Date</th>
+              <th>TXID</th>
+            </tr>
+          </thead>
+          <tbody id="invoices-body">
+            <tr><td colspan="9" class="text-center">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Transactions -->
+    <div id="tab-transactions" class="tab-content">
+      <h3>Blockchain Transactions</h3>
+      <div class="table-wrapper">
+        <table id="transactions-table">
+          <thead>
+            <tr>
+              <th>TXID</th>
+              <th>Currency</th>
+              <th>Amount</th>
+              <th>Confirmations</th>
+              <th>Status</th>
+              <th>Invoice</th>
+              <th>Customer</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="transactions-body">
+            <tr><td colspan="8" class="text-center">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Audit Log -->
+    <div id="tab-audit" class="tab-content">
+      <h3>Audit Log</h3>
+      <div class="table-wrapper">
+        <table id="audit-table">
+          <thead>
+            <tr>
+              <th>Timestamp</th>
+              <th>Event Type</th>
+              <th>Invoice</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody id="audit-body">
+            <tr><td colspan="4" class="text-center">Loading...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Wallet Addresses -->
+    <div class="card wallet-card">
+      <h3>🔐 Wallet Addresses (Owner Controlled)</h3>
+      <p class="wallet-note">All funds go directly to these addresses. Private keys are never stored.</p>
+      <div class="wallet-list">
+        <div class="wallet-item">
+          <span class="wallet-currency">BTC</span>
+          <code class="wallet-address">bc1quvacykmvd6akyus02zl54m7khu2dstnl50ezxl</code>
+        </div>
+        <div class="wallet-item">
+          <span class="wallet-currency">POL</span>
+          <code class="wallet-address">0x49AE3D13539674D04D71978CF4Ad8344464C6ac9</code>
+        </div>
+        <div class="wallet-item">
+          <span class="wallet-currency">SOL</span>
+          <code class="wallet-address">HKBNwe5qkipHoZtAvmqgyL61ZaLschk2B1d1R3nWNaeD</code>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

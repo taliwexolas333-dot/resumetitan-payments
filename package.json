@@ -1,0 +1,20 @@
+{
+  "name": "resumetitan-crypto-pay",
+  "version": "1.0.0",
+  "description": "Non-custodial cryptocurrency payment system for ResumeTitan AI",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "sentinel": "node services/sentinel.js",
+    "dev": "node app.js & node services/sentinel.js",
+    "init-db": "node db/schema.js"
+  },
+  "dependencies": {
+    "axios": "^1.17.0",
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.2",
+    "sql.js": "^1.14.1",
+    "uuid": "^9.0.1"
+  }
+}

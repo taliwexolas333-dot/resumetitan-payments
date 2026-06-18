@@ -1,0 +1,65 @@
+{
+  "wallets": {
+    "BTC": {
+      "address": "bc1quvacykmvd6akyus02zl54m7khu2dstnl50ezxl",
+      "label": "ResumeTitan AI BTC Wallet",
+      "network": "mainnet",
+      "requiredConfirmations": 2
+    },
+    "POL": {
+      "address": "0x49AE3D13539674D04D71978CF4Ad8344464C6ac9",
+      "label": "ResumeTitan AI Polygon Wallet",
+      "network": "mainnet",
+      "chainId": 137,
+      "requiredConfirmations": 15
+    },
+    "SOL": {
+      "address": "HKBNwe5qkipHoZtAvmqgyL61ZaLschk2B1d1R3nWNaeD",
+      "label": "ResumeTitan AI Solana Wallet",
+      "network": "mainnet",
+      "requiredConfirmations": 1
+    }
+  },
+  "pricing": {
+    "resume": {
+      "USD": 79,
+      "name": "Professional Resume"
+    },
+    "cover-letter": {
+      "USD": 39,
+      "name": "Tailored Cover Letter"
+    },
+    "linkedin": {
+      "USD": 49,
+      "name": "LinkedIn Profile Optimization"
+    },
+    "interview-prep": {
+      "USD": 59,
+      "name": "Interview Preparation Guide"
+    },
+    "career-advisory": {
+      "USD": 49,
+      "name": "Career Advisory Report"
+    },
+    "bundle-basic": {
+      "USD": 149,
+      "name": "Basic Bundle (Resume + Cover Letter + LinkedIn)"
+    },
+    "bundle-premium": {
+      "USD": 219,
+      "name": "Premium Bundle (All 5 Services)"
+    }
+  },
+  "api": {
+    "btc": {
+      "explorer": "https://mempool.space/api"
+    },
+    "pol": {
+      "rpc": "https://polygon-rpc.com"
+    },
+    "sol": {
+      "rpc": "https://api.mainnet-beta.solana.com"
+    }
+  },
+  "invoiceExpiryMinutes": 60
+}

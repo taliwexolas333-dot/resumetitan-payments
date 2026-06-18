@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ResumeTitan AI — Secure Payment Portal</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <div class="brand">
+        <span class="brand-icon">⚡</span>
+        <span class="brand-text">ResumeTitan<span class="brand-accent"> AI</span></span>
+      </div>
+      <div class="nav-links">
+        <a href="/dashboard.html" class="nav-link">Admin Dashboard</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="hero">
+      <h1>🚀 Professional Career Documents</h1>
+      <p>Pay with cryptocurrency — Bitcoin, Polygon, or Solana. Get your career docs in hours, not days.</p>
+    </div>
+
+    <!-- Step 1: Select Product -->
+    <section id="step-products" class="step active">
+      <div class="step-header">
+        <span class="step-number">1</span>
+        <h2>Choose Your Service</h2>
+      </div>
+      <div class="products-grid" id="products-list">
+        <div class="loading">Loading products...</div>
+      </div>
+    </section>
+
+    <!-- Step 2: Your Info -->
+    <section id="step-info" class="step" style="display:none">
+      <div class="step-header">
+        <span class="step-number">2</span>
+        <h2>Your Information</h2>
+      </div>
+      <div class="card">
+        <div id="selected-product-info" class="selected-product"></div>
+        <form id="customer-form" class="form">
+          <div class="form-group">
+            <label for="customer-name">Full Name</label>
+            <input type="text" id="customer-name" placeholder="e.g. Alex Chen" required>
+          </div>
+          <div class="form-group">
+            <label for="customer-email">Email Address</label>
+            <input type="email" id="customer-email" placeholder="alex@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="customer-notes">Notes (optional)</label>
+            <textarea id="customer-notes" placeholder="Target role, company, or any special instructions..."></textarea>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary" onclick="backToProducts()">← Back</button>
+            <button type="submit" class="btn btn-primary">Continue to Payment →</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Step 3: Payment -->
+    <section id="step-payment" class="step" style="display:none">
+      <div class="step-header">
+        <span class="step-number">3</span>
+        <h2>Complete Payment</h2>
+      </div>
+      
+      <div class="payment-container">
+        <div class="payment-info card">
+          <div class="payment-summary">
+            <h3>Order Summary</h3>
+            <div id="payment-summary-details"></div>
+          </div>
+          
+          <div class="currency-selector">
+            <h3>Select Currency</h3>
+            <div class="currency-options" id="currency-options">
+              <button class="currency-btn active" data-currency="BTC" onclick="selectCurrency('BTC')">
+                <span class="currency-icon">₿</span>
+                <span>Bitcoin</span>
+              </button>
+              <button class="currency-btn" data-currency="POL" onclick="selectCurrency('POL')">
+                <span class="currency-icon">⬡</span>
+                <span>Polygon</span>
+              </button>
+              <button class="currency-btn" data-currency="SOL" onclick="selectCurrency('SOL')">
+                <span class="currency-icon">◎</span>
+                <span>Solana</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="payment-address card" id="payment-address-section">
+          <div class="loading">Generating invoice...</div>
+        </div>
+      </div>
+
+      <div class="payment-status card" id="payment-status" style="display:none">
+        <div class="status-icon">⏳</div>
+        <h3>Waiting for Payment</h3>
+        <p id="status-message">We're monitoring the blockchain for your transaction...</p>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+        <div id="status-details"></div>
+      </div>
+    </section>
+
+    <!-- Step 4: Confirmed -->
+    <section id="step-confirmed" class="step" style="display:none">
+      <div class="confirmation card">
+        <div class="confirmation-icon">✅</div>
+        <h2>Payment Confirmed!</h2>
+        <p>Your payment has been confirmed on the blockchain. We'll start working on your documents immediately.</p>
+        <div class="receipt" id="receipt-details"></div>
+        <p class="confirmation-note">You'll receive your deliverables at the email address you provided within 24 hours.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>ResumeTitan AI — Professional career services powered by AI. Crypto payments are non-refundable once confirmed.</p>
+    </div>
+  </footer>
+
+  <script src="/js/app.js"></script>
+</body>
+</html>
