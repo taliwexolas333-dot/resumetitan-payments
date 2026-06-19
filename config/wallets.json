@@ -55,7 +55,7 @@
       "explorer": "https://mempool.space/api"
     },
     "pol": {
-      "rpc": "https://polygon-rpc.com"
+      "rpc": "https://polygon.drpc.org"
     },
     "sol": {
       "rpc": "https://api.mainnet-beta.solana.com"

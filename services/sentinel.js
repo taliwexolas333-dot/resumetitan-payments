@@ -132,18 +132,95 @@ async function checkPOLTransactions() {
     const apiKey = process.env.POLYGONSCAN_API_KEY || '';
 
     if (!apiKey) {
-      // Fallback: check balance via RPC
-      const balanceResp = await axios.post(
-        walletConfig.api.pol.rpc,
-        { jsonrpc: '2.0', id: 1, method: 'eth_getBalance', params: [config.address, 'latest'] },
-        { timeout: 10000 }
-      );
-      const balanceWei = BigInt(balanceResp.data.result || '0x0');
-      const balancePOL = Number(balanceWei) / 1e18;
-      if (balancePOL > 0) {
-        console.log(`[POL] Balance check: ${balancePOL.toFixed(4)} POL`);
+      // RPC-based balance + recent transaction scanning
+      try {
+        // Get current block number
+        const blockResp = await axios.post(
+          walletConfig.api.pol.rpc,
+          { jsonrpc: '2.0', id: 1, method: 'eth_blockNumber', params: [] },
+          { timeout: 10000 }
+        );
+        const currentBlock = parseInt(blockResp.data.result, 16);
+        console.log(`[POL] Current block: ${currentBlock}`);
+
+        // Get wallet balance
+        const balanceResp = await axios.post(
+          walletConfig.api.pol.rpc,
+          { jsonrpc: '2.0', id: 1, method: 'eth_getBalance', params: [config.address, 'latest'] },
+          { timeout: 10000 }
+        );
+        const balanceWei = BigInt(balanceResp.data.result || '0x0');
+        const balancePOL = Number(balanceWei) / 1e18;
+        if (balancePOL > 0.001) {
+          console.log(`[POL] Wallet balance: ${balancePOL.toFixed(4)} POL`);
+        }
+
+        // Check recent blocks for incoming transactions (last 5 blocks to avoid rate limits)
+        const pendingInvoices = DB.all(
+          "SELECT * FROM invoices WHERE currency = 'POL' AND status = 'pending' AND expires_at > strftime('%s','now')"
+        );
+        if (pendingInvoices.length > 0) {
+          for (let b = currentBlock; b >= Math.max(currentBlock - 5, 0) && b > 0; b--) {
+            try {
+              const blockData = await axios.post(
+                walletConfig.api.pol.rpc,
+                { jsonrpc: '2.0', id: 1, method: 'eth_getBlockByNumber', params: ['0x' + b.toString(16), false] },
+                { timeout: 10000 }
+              );
+              const block = blockData.data.result;
+              if (!block || !block.transactions) continue;
+
+              // Process transactions from this block
+              for (const txHash of block.transactions) {
+                try {
+                  const txResp = await axios.post(
+                    walletConfig.api.pol.rpc,
+                    { jsonrpc: '2.0', id: 1, method: 'eth_getTransactionByHash', params: [typeof txHash === 'string' ? txHash : txHash.hash] },
+                    { timeout: 10000 }
+                  );
+                  const tx = txResp.data.result;
+                  if (!tx || !tx.to) continue;
+
+                  if (tx.to.toLowerCase() !== address) continue;
+                  const amountPOL = parseInt(tx.value) / 1e18;
+                  if (amountPOL <= 0) continue;
+
+                  const existing = DB.all('SELECT id FROM transactions WHERE txid = ? AND currency = "POL"', [tx.hash]);
+                  if (existing.length > 0) continue;
+
+                  for (const invoice of pendingInvoices) {
+                    const tolerancePOL = parseFloat((invoice.amount * 0.02).toFixed(6));
+                    if (Math.abs(amountPOL - invoice.amount) <= tolerancePOL) {
+                      const confs = currentBlock - b + 1;
+                      console.log(`[POL] ✅ MATCH! TX ${tx.hash.substring(0, 20)}... → ${invoice.invoice_id} (${amountPOL} POL, ${confs} confs)`);
+
+                      DB.run(`INSERT INTO transactions (id, invoice_id, txid, currency, amount, confirmations, from_address, to_address, block_height, timestamp, status)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                        [uuidv4(), invoice.id, tx.hash, 'POL', amountPOL, confs,
+                          tx.from, config.address, b, block.timestamp || Math.floor(Date.now() / 1000),
+                          confs >= config.requiredConfirmations ? 'confirmed' : 'pending']);
+                      logAudit('pol_tx_received', invoice.id, { txid: tx.hash, amount: amountPOL });
+
+                      if (confs >= config.requiredConfirmations) {
+                        confirmPayment(invoice.id, tx.hash, 'POL');
+                      }
+                      break;
+                    }
+                  }
+                } catch (txErr) {
+                  // Skip individual tx failures
+                }
+              }
+            } catch (blockErr) {
+              // Skip blocks that fail to load
+              continue;
+            }
+          }
+        }
+      } catch (rpcErr) {
+        console.log(`[POL] RPC scan note: ${rpcErr.message.substring(0, 60)}`);
       }
-      return; // Without API key, full tx matching requires the explorer
+      return;
     }
 
     const txResp = await axios.get(
